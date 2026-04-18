@@ -1,0 +1,25 @@
+{
+  "name": "greengoodies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "sass assets/styles/app.scss public/css/app.min.css --style compressed --no-source-map",
+    "scss:watch": "sass assets/styles/app.scss public/css/app.min.css --style compressed --watch",
+    "bs": "browser-sync start --proxy 'http://127.0.0.1:8000' --files 'public/css/*.css, templates/**/*.html.twig' --port 4000",
+    "dev": "npm-run-all --parallel scss:watch bs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "chokidar-cli": "^3.0.0",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.99.0"
+  }
+}

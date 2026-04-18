@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello IndexController!
+{% endblock %}
+
+{% block body %}
+
+	<section class="hero-section">
+
+		<div class="container">
+
+			<div class="content-container">
+
+				<div class="content">
+					<h1>Bienvenue</h1>
+
+					<p>Découvrez notre univers de produits durables et éthiques pour une consommation responsable</p>
+					<p>Retrouvez des articles d’hygiène & beauté, des accessoires & boissons et du prêt à porter</p>
+				</div>
+			</div>
+
+			<div class="image-container">
+				<img src="{{ asset('images/hero-section.png') }}" alt="">
+			</div>
+		</div>
+	</section>
+
+	<section class="beliefs-section">
+		<div class="container">
+
+			<div class="content-container">
+
+				<div class="content">
+					<h2>Notre conviction</h2>
+					<p>Chez GreenGoodies, nous croyons en un monde où le commerce peut être synonyme de bien-être pour la planète et ses habitants. Notre mission est de vous proposer une sélection rigoureuse de produits qui allient qualité, durabilité et éthique</p>
+				</div>
+			</div>
+
+			<div class="image-container">
+				<img src="{{ asset('images/beliefs-section.png') }}" alt="">
+			</div>
+		</div>
+	</section>
+
+	<section class="values-section">
+		<div class="container">
+
+
+			<div class="image-container">
+				<img src="{{ asset('images/values-section.png') }}" alt="">
+			</div>
+
+			<div class="content-container">
+
+				<div class="content">
+					<h2>Nos valeurs</h2>
+					<p>Durabilité : Nous sélectionnons soigneusement des produits qui respectent l'environnement et favorisent la durabilité.
+						Éthique : Nous nous engageons à travailler avec des partenaires et des fournisseurs qui partagent nos valeurs éthiques.
+						Écologie : Nous encourageons des pratiques respectueuses de l'écosystème et privilégions les matériaux écologiques.</p>
+				</div>
+			</div>
+
+		</div>
+	</section>
+{% endblock %}
