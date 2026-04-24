@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription
+{% endblock %}
+
+{% block body %}
+
+	<section class="inscription">
+		<div class="container">
+
+			<div class="left-container image-container">
+				<img src="{{ asset('images/hero-section.png') }}" alt="">
+			</div>
+
+			<div class="right-container">
+
+				<h1>Inscription</h1>
+				<p>Tous les champs sont obligatoires.</p>
+				{{ form_errors(registrationForm) }}
+
+				{{ form_start(registrationForm) }}
+				{{ form_row(registrationForm.firstname) }}
+				{{ form_row(registrationForm.lastname) }}
+				{{ form_row(registrationForm.email) }}
+				{{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+				{{ form_row(registrationForm.agreeTerms) }}
+
+				<button type="submit" class="btn">Register</button>
+				{{ form_end(registrationForm) }}
+
+                <a href="{{ path('app_login') }}">Déjà un compte ? Se connecter</a>
+			</div>
+		</div>
+
+	</section>
+
+
+{% endblock %}
