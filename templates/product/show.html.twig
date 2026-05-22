@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Bienvenue surGreen Goodies
+{% endblock %}
+
+{% block body %}
+
+    <section class="product">
+
+        <div class="image-container">
+            <img src="{{ asset('images/' ~ product.picture) }}" alt="">
+        </div>
+
+        <div class="content">
+
+        	<h1 class="title">{{ product.name }}</h1>
+
+			<p class="price">{{ product.price }}</p>
+
+            <p class="description-title">Description</p>
+            
+            <p class="description-text">{{ product.fullDescription }}</p>
+
+            <a class="add-to-cart" href="#">Ajouter au panier</a>
+
+        </div>
+
+    </section>
+
+{% endblock %}
+    

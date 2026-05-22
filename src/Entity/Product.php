@@ -22,11 +22,11 @@ class Product
     #[ORM\Column]
     private ?float $price = null;
 
-   
+    #[ORM\Column(length: 255)]
     private ?string $shortDescription = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $longDescription = null;
+    private ?string $fullDescription = null;
 
     #[ORM\Column(length: 255)]
     private ?string $picture = null;
@@ -90,14 +90,14 @@ class Product
         return $this;
     }
 
-    public function getLongDescription(): ?string
+    public function getFullDescription(): ?string
     {
-        return $this->longDescription;
+        return $this->fullDescription;
     }
 
-    public function setLongDescription(string $longDescription): static
+    public function setFullDescription(string $fullDescription): static
     {
-        $this->longDescription = $longDescription;
+        $this->fullDescription = $fullDescription;
 
         return $this;
     }
@@ -135,7 +135,6 @@ class Product
     public function removeCartProduct(CartProduct $cartProduct): static
     {
         if ($this->cartProducts->removeElement($cartProduct)) {
-            // set the owning side to null (unless already changed)
             if ($cartProduct->getProduct() === $this) {
                 $cartProduct->setProduct(null);
             }
@@ -165,7 +164,6 @@ class Product
     public function removeOrderProduct(OrderProduct $orderProduct): static
     {
         if ($this->orderProducts->removeElement($orderProduct)) {
-            // set the owning side to null (unless already changed)
             if ($orderProduct->getProduct() === $this) {
                 $orderProduct->setProduct(null);
             }

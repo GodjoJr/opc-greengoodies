@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
+use App\Entity\Product;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -12,13 +13,13 @@ class UserFixtures extends Fixture
 {
     public function __construct(
         private UserPasswordHasherInterface $hasher
-    ) {}
+    ) {
+    }
 
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
 
-        // Admin
         $admin = new User();
         $admin->setEmail('admin@mail.com');
         $admin->setFirstname('Admin');
@@ -28,7 +29,6 @@ class UserFixtures extends Fixture
         $admin->setPassword($this->hasher->hashPassword($admin, 'password'));
         $manager->persist($admin);
 
-        // User fixe
         $user = new User();
         $user->setEmail('user@mail.com');
         $user->setFirstname($faker->firstName());
@@ -38,7 +38,6 @@ class UserFixtures extends Fixture
         $user->setPassword($this->hasher->hashPassword($user, 'password'));
         $manager->persist($user);
 
-        // 3 users aléatoires
         for ($i = 0; $i < 3; $i++) {
             $randomUser = new User();
             $randomUser->setEmail($faker->unique()->safeEmail());
@@ -50,6 +49,75 @@ class UserFixtures extends Fixture
             $manager->persist($randomUser);
         }
 
+        $products = [
+            [
+                'name' => 'Kit d\'hygiène recyclable',
+                'shortDescription' => 'Pour une salle de bain éco-friendly',
+                'price' => 24.99,
+                'picture' => 'product-image-1.png',
+            ],
+            [
+                'name' => 'Shot Tropical',
+                'shortDescription' => 'Fruits frais, pressés à froid',
+                'price' => 4.50,
+                'picture' => 'product-image-2.png',
+            ],
+            [
+                'name' => 'Gourde en bois',
+                'shortDescription' => '50cl, bois d\'olivier',
+                'price' => 16.90,
+                'picture' => 'product-image-3.png',
+            ],
+            [
+                'name' => 'Disques Démaquillants x3',
+                'shortDescription' => 'Solution efficace pour vous démaquiller en douceur',
+                'price' => 19.90,
+                'picture' => 'product-image-4.png',
+            ],
+            [
+                'name' => 'Bougie Lavande & Patchouli',
+                'shortDescription' => 'Cire naturelle',
+                'price' => 32.00,
+                'picture' => 'product-image-5.png',
+            ],
+            [
+                'name' => 'Brosse à dent',
+                'shortDescription' => 'Bois de hêtre rouge issu de forêts gérées durablement',
+                'price' => 5.40,
+                'picture' => 'product-image-6.png',
+            ],
+            [
+                'name' => 'Kit couvert en bois',
+                'shortDescription' => 'Revêtement Bio en olivier & sac de transport',
+                'price' => 12.30,
+                'picture' => 'product-image-7.png',
+            ],
+            [
+                'name' => 'Nécessaire, déodorant Bio',
+                'shortDescription' => '50ml déodorant à l\'eucalyptus',
+                'price' => 8.50,
+                'picture' => 'product-image-8.png',
+            ],
+            [
+                'name' => 'Savon Bio',
+                'shortDescription' => 'Thé, Orange & Girofle',
+                'price' => 18.90,
+                'picture' => 'product-image-9.png',
+            ],
+        ];
+
+        foreach ($products as $data) {
+            $product = new Product();
+            $product->setName($data['name']);
+            $product->setShortDescription($data['shortDescription']);
+            $product->setFullDescription($faker->paragraphs(2, true));
+            $product->setPrice($data['price']);
+            $product->setPicture($data['picture']);
+
+            $manager->persist($product);
+        }
+
         $manager->flush();
     }
+
 }
