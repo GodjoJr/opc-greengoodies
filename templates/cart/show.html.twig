@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Hello CartController!
+{% endblock %}
+
+{% block body %}
+    <section class="cart">
+        <div class="container">
+
+            <h1>Mon panier</h1>
+
+            <a class="empty-cart" href="{{ path('app_cart_empty') }}">x Vider le panier</a>
+
+            <ul class="cart-products">
+                {% for cartProduct in cart.cartProducts %}
+                <li class="cart-product">
+                    <div class="image-container">
+                        <img src="{{ asset('images/' ~ cartProduct.product.picture) }}" alt="{{ cartProduct.product.name }}">
+                    </div>
+
+                    <div class="content">
+                        <p class="title">{{ cartProduct.product.name }}</p>
+                        <p class="quantity">Quantité : {{ cartProduct.quantity }}</p>
+                        <p class="price">{{ cartProduct.product.price * cartProduct.quantity }} €</p>
+                    </div>
+                </li>
+                {% endfor %}
+
+                <li class="total-cart">
+                    <p class="total">Total panier : <span>8,50€</span></p>
+                    <p class="shipping">Frais de livraison : Offert</p>
+                </li>
+            </ul>
+
+            <a href="{{ path('app_order_add') }}" class="btn add-to-order">Valider la commande</a>
+
+        </div>
+    </section>
+
+{% endblock %}

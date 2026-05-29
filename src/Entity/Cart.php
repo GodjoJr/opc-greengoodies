@@ -15,7 +15,7 @@ class Cart
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
@@ -28,8 +28,8 @@ class Cart
     /**
      * @var Collection<int, CartProduct>
      */
-    #[ORM\OneToMany(targetEntity: CartProduct::class, mappedBy: 'cart')]
-    private Collection $cartProducts;
+  #[ORM\OneToMany(targetEntity: CartProduct::class, mappedBy: 'cart', cascade: ['persist', 'remove'], orphanRemoval: true)]
+private Collection $cartProducts;
 
     public function __construct()
     {

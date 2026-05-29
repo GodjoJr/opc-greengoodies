@@ -33,14 +33,16 @@
 				</a>
 
 				<nav class="menu">
-					<a href="#">Nos produits</a>
-					<a href="#">Mon panier</a>
-					<a href="#">Mon compte</a>
+					<a href="{{ path('app_products_index') }}">Nos produits</a>
+
 					{% if app.user %}
-						<a href="#">Déconnexion</a>
+						<a href="{{ path('app_cart_show') }}">Mon panier</a>
+						<a href="{{ path('app_user_profile') }}">Mon compte</a>
+						<a href="{{ path('app_logout') }}">Déconnexion</a>
 					{% else %}
 						<a href="{{ path('app_login') }}">Connexion</a>
 					{% endif %}
+
 				</nav>
 			</div>
 		</header>
@@ -51,7 +53,7 @@
 
 		<footer>
 			<div class="container">
-				<p>© GreenGoodies - 2024</p>
+				<p>© GreenGoodies - 2026</p>
 			</div>
 		</footer>
 

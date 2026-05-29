@@ -9,20 +9,20 @@
     <section class="product">
 
         <div class="image-container">
-            <img src="{{ asset('images/' ~ product.picture) }}" alt="">
+            <img src="{{ asset('images/' ~ product.picture) }}" alt="{{ product.name }}">
         </div>
 
         <div class="content">
 
         	<h1 class="title">{{ product.name }}</h1>
 
-			<p class="price">{{ product.price }}</p>
+			<p class="price">{{ product.price }}€</p>
 
             <p class="description-title">Description</p>
             
             <p class="description-text">{{ product.fullDescription }}</p>
 
-            <a class="add-to-cart" href="#">Ajouter au panier</a>
+          <a class="add-to-cart" href="{{ path('app_cart_add', {id: product.id}) }}">Ajouter au panier</a>
 
         </div>
 

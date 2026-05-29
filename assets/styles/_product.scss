@@ -60,3 +60,61 @@
         }
     }
 }
+
+.products-archive {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    article {
+        .image-container {
+            width: 100%;
+            aspect-ratio: 1/1;
+        }
+
+        .content {
+            flex: 1;
+            padding: 30px 40px 20px;
+
+            h3 {
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 100%;
+                letter-spacing: 0%;
+                text-align: center;
+            }
+
+            .short-desc {
+                color: rgba(black, 0.7);
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 100%;
+                letter-spacing: 0%;
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            .price {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 100%;
+                letter-spacing: 0%;
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .see-more {
+                display: block;
+                width: 100%;
+                color: black;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 100%;
+                letter-spacing: 0%;
+                margin-top: 10px;
+                padding: 20px;
+                text-align: center;
+                text-decoration: none;
+            }
+        }
+    }
+}

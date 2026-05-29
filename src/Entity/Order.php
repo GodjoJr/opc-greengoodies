@@ -38,6 +38,9 @@ class Order
     #[ORM\OneToMany(targetEntity: OrderProduct::class, mappedBy: 'customerOrder')]
     private Collection $orderProducts;
 
+    #[ORM\Column(length: 10)]
+    private ?string $order_number = null;
+
     public function __construct()
     {
         $this->orderProducts = new ArrayCollection();
@@ -134,6 +137,18 @@ class Order
                 $orderProduct->setCustomerOrder(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOrderNumber(): ?string
+    {
+        return $this->order_number;
+    }
+
+    public function setOrderNumber(string $order_number): static
+    {
+        $this->order_number = $order_number;
 
         return $this;
     }
