@@ -29,4 +29,11 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+    #[Route('/api/login', name: 'api_login', methods: ['POST'])]
+    public function apiLogin(): void
+    {
+        //  creating this method  so that the Symfony router knows the URL
+        throw new \LogicException('Cette méthode peut rester vide, elle est interceptée par le pare-feu JWT.');
+    }
 }

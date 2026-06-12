@@ -22,13 +22,13 @@
                     <div class="content">
                         <p class="title">{{ cartProduct.product.name }}</p>
                         <p class="quantity">Quantité : {{ cartProduct.quantity }}</p>
-                        <p class="price">{{ cartProduct.product.price * cartProduct.quantity }} €</p>
+                        <p class="price">{{ (cartProduct.product.price * cartProduct.quantity)|number_format(2, ',', '.') }} €</p>
                     </div>
                 </li>
                 {% endfor %}
 
                 <li class="total-cart">
-                    <p class="total">Total panier : <span>8,50€</span></p>
+                    <p class="total">Total panier : <span>{{ cart_total|number_format(2, ',', '.') }} €</span></p>
                     <p class="shipping">Frais de livraison : Offert</p>
                 </li>
             </ul>
@@ -36,6 +36,7 @@
             <a href="{{ path('app_order_add') }}" class="btn add-to-order">Valider la commande</a>
 
         </div>
+
     </section>
 
 {% endblock %}

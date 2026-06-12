@@ -152,4 +152,15 @@ class Order
 
         return $this;
     }
+
+    public function getTotal(): float
+{
+    $total = 0;
+
+    foreach ($this->orderProducts as $orderProduct) {
+        $total += $orderProduct->getUnitPrice() * $orderProduct->getQuantity();
+    }
+
+    return $total;
+}
 }

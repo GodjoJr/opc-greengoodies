@@ -16,7 +16,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 final class CartController extends AbstractController
 {
     #[IsGranted('ROLE_USER')]
-   #[Route('/add/{id}', name: 'add')]
+    #[Route('/add/{id}', name: 'add')]
     public function addToCart(Product $product, CartRepository $cartRepository, EntityManagerInterface $em): Response
     {
         $user = $this->getUser();
@@ -66,27 +66,36 @@ final class CartController extends AbstractController
             return $this->redirectToRoute('app_products_index');
         }
 
+        $total = array_sum(
+            array_map(
+                fn(CartProduct $cp) => $cp->getProduct()->getPrice() * $cp->getQuantity(),
+                $cart->getCartProducts()->toArray()
+            )
+            ?? [0]
+        );
+
         return $this->render('cart/show.html.twig', [
-            'cart' => $cart
+            'cart' => $cart,
+            'cart_total' => $total
         ]);
     }
 
 
-#[IsGranted('ROLE_USER')]
-#[Route('/empty', name: 'empty')]
-public function emptyCart(CartRepository $cartRepository, EntityManagerInterface $em): Response
-{
-    $cart = $cartRepository->findOneBy(['user' => $this->getUser()]);
+    #[IsGranted('ROLE_USER')]
+    #[Route('/empty', name: 'empty')]
+    public function emptyCart(CartRepository $cartRepository, EntityManagerInterface $em): Response
+    {
+        $cart = $cartRepository->findOneBy(['user' => $this->getUser()]);
 
-    if (!$cart) {
+        if (!$cart) {
+            return $this->redirectToRoute('app_cart_show');
+        }
+
+        $em->remove($cart);
+        $em->flush();
+
         return $this->redirectToRoute('app_cart_show');
     }
-
-    $em->remove($cart);
-    $em->flush();
-
-    return $this->redirectToRoute('app_cart_show');
-}
 
 
 }

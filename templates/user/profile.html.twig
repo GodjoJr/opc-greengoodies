@@ -5,5 +5,75 @@
 {% endblock %}
 
 {% block body %}
-    {{ dump(orders) }}
+    <section class="profile">
+
+        <h1>
+            Mon compte
+        </h1>
+
+        {% dump(orders) %}
+
+        <table class="orders">
+            <h2>
+                Mes commandes
+            </h2>
+            <th>
+                <tr>
+                    <td>
+                        N°
+                    </td>
+                    <td>
+                        Date
+                    </td>
+                    <td>
+                        Prix
+                    </td>
+                </tr>
+            </th>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>
+                            {{ order.orderNumber }}
+                        </td>
+                        <td>
+                            {{ order.createdAt|date('d/m/Y') }}
+                        </td>
+                        <td>
+                            {{ order.total|number_format(2, ',', ' ') }}
+                            €
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="api-access">
+
+            <h2>
+                Mon accès API
+            </h2>
+
+            {% if api === false %}
+                <a class="api-btn" href="{{ path('app_user_profile_api_activate') }}">
+                    Activer mon accès API
+                </a>
+            {% endif %}
+
+            {% if api === true %}
+                <a class="api-btn" href="{{ path('app_user_profile_api_deactivate') }}">
+                    Désactiver mon accès API
+                </a>
+            {% endif %}
+
+        </div>
+
+        <div class="delete-account">
+
+            <a class="api-btn" href="{{ path('app_user_profile_delete') }}">
+                Supprimer mon compte
+            </a>
+        </div>
+
+    </section>
 {% endblock %}
