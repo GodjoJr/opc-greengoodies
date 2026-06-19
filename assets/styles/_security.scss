@@ -1,6 +1,7 @@
 .inscription,
 .connexion {
     margin-top: 50px;
+
     .container {
         display: flex;
         justify-content: center;
@@ -40,10 +41,52 @@
                     padding: 15px;
                     margin-bottom: 20px;
                 }
+
+                .checkbox {
+                            margin-bottom: 20px;
+                    div {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: row-reverse;
+                        align-items: center;
+                        gap: 10px;
+
+                        input {
+                            width: 20px;
+                            margin-bottom: unset;
+                        }
+
+                        label {
+                            flex: 1;
+                            margin-bottom: unset;
+                        }
+                    }
+                }
+
+                button {
+                    margin-top: 10px;
+                    background-color: #565656;
+                    padding: 20px;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 100%;
+                    letter-spacing: 0%;
+                    text-align: center;
+                    color: white;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
             }
 
             a {
                 margin-top: 40px;
+                text-align: center;
+                font-weight: 400;
+                font-size: 14px;
+                text-decoration: underline;
+                text-decoration-style: solid;
+                text-underline-offset: 3px;
+                color: #666666;
             }
         }
     }

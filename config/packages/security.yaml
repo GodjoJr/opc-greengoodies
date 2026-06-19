@@ -13,22 +13,32 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        # main:
-        #     lazy: true
-        #     provider: app_user_provider
 
-        login:
+        api_login:
             pattern: ^/api/login
             stateless: true
+            provider: app_user_provider
+            user_checker: App\Security\UserChecker
             json_login:
-                check_path: /api/login  # <-- On change /api/login_check par /api/login
-                username_path: username # <-- Optionnel mais recommandé si tu utilises "username" au lieu de "email" dans ton JSON
+                check_path: /api/login
+                username_path: username
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
         api:
             pattern: ^/api
             stateless: true
             jwt: ~
+            
+        main:
+            lazy: true
+            provider: app_user_provider
+            form_login:
+                login_path: app_login
+                check_path: app_login
+                enable_csrf: true
+            logout:
+                path: app_logout
+
 
 
             # activate different ways to authenticate
@@ -40,8 +50,8 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/api/login, roles: PUBLIC_ACCESS }
-        # - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
     security:
