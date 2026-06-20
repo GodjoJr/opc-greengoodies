@@ -13,40 +13,42 @@
 
         {% dump(orders) %}
 
-        <table class="orders">
-            <h2>
-                Mes commandes
-            </h2>
-            <th>
-                <tr>
-                    <td>
-                        N°
-                    </td>
-                    <td>
-                        Date
-                    </td>
-                    <td>
-                        Prix
-                    </td>
-                </tr>
-            </th>
-            <tbody>
-                {% for order in orders %}
+        <section class="orders-container">
+            <table class="orders">
+                <h2>
+                    Mes commandes
+                </h2>
+                <thead>
                     <tr>
                         <td>
-                            {{ order.orderNumber }}
+                            N°
                         </td>
-                        <td>
-                            {{ order.createdAt|date('d/m/Y') }}
+                        <td class="date">
+                            Date
                         </td>
-                        <td>
-                            {{ order.total|number_format(2, ',', ' ') }}
-                            €
+                        <td class="price">
+                            Prix
                         </td>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>
+                                {{ order.orderNumber }}
+                            </td>
+                            <td class="date">
+                                {{ order.createdAt|date('d/m/Y') }}
+                            </td>
+                            <td class="price">
+                                {{ order.total|number_format(2, ',', ' ') }}
+                                €
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
 
         <div class="api-access">
 
