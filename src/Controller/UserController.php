@@ -62,6 +62,6 @@ final class UserController extends AbstractController
         $em->remove($user);
         $em->flush();
 
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_index');
     }
 }
